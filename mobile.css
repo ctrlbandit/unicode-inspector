@@ -1,0 +1,82 @@
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden; /* Prevent side-scrolling */
+    }
+
+    html, body {
+        scroll-behavior: smooth; /* Nice smooth scrolling */
+    }
+
+    table {
+        border: 0;
+        width: 100%;
+    }
+
+    thead {
+        display: none; /* Hide headers completely */
+    }
+
+    tr {
+        display: block;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 10px;
+        background: #fff; /* Makes mobile cards look clean */
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        overflow: hidden;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border: none;
+        text-align: left;
+        font-size: 15px;
+        position: relative;
+    }
+
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #555;
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    td:last-child {
+        border-bottom: none;
+    }
+
+    .summary, .block-list, #characterTable {
+        padding: 15px;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 120px;
+        font-size: 14px;
+        margin-top: 8px;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 8px;
+        font-size: 16px;
+    }
+
+    h1, h2, h3 {
+        font-size: 22px;
+    }
+
+    footer {
+        font-size: 13px;
+    }
+    tr, td {
+        transition: all 0.3s ease;
+        
+    }
+}
