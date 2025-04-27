@@ -51,6 +51,43 @@ const SCRIPT_STATUS = {
 'LINEAR B IDEOGRAMS': 'closed',
 'TIFINAGH': 'closed',
 'YI RADICALS': 'closed',
+'SAMARITAN': 'closed',
+'MANDIAC': 'closed',
+'SAURASHTRA': 'closed',
+'OL CHIKI': 'closed',
+'BATAK': 'closed',
+'LEPCHA': 'closed',
+'BUGINESE': 'closed',
+'TAI THAM': 'closed',
+'BALINESE': 'closed',
+'SUNDANESE': 'closed',
+'REJANG': 'closed',
+'CHAM': 'closed',
+'JAVANESE': 'closed',
+'MEETEI MAYEK': 'closed',
+'SUNDANESE SUPPLEMENT': 'closed',
+'WARANG CITI': 'closed',
+'TIRHUTA': 'closed',
+'GRANTHA': 'closed',
+'KHOJKI': 'closed',
+'MULTANI': 'closed',
+'KHUDAWADI': 'closed',
+'NEWA': 'closed',
+'TAKRI': 'closed',
+'AHOM': 'closed',
+'DOGRA': 'closed',
+'NANDINAGARI': 'closed',
+'ZANABAZAR SQUARE': 'closed',
+'SOYOMBO': 'closed',
+'PAU CIN HAU': 'closed',
+'BHAIKSUKI': 'closed',
+'MARCHEN': 'closed',
+'MASARAM GONDI': 'closed',
+'GUNJALA GONDI': 'closed',
+'MAKASAR': 'closed',
+'TOTO': 'closed',
+'WANCHO': 'closed',
+'MIAO': 'closed',
 
 
 // open scripts
@@ -103,7 +140,7 @@ const SCRIPT_STATUS = {
 'INSCRIPTIONAL PAHLAVI': 'open',
 'EGYPTIAN HIEROGLYPHS': 'open',
 'RUNIC': 'open',
-'SHAWIAN': 'open', 
+'SHAWIAN': 'open',
 'SUTTON SIGNWRITING': 'open',
 'SUPPLEMENTAL SYMBOLS AND PICTOGRAPHS': 'open',
 'MISCELLANEOUS SYMBOLS AND PICTOGRAPHS': 'open',
@@ -121,9 +158,7 @@ const SCRIPT_STATUS = {
 'SUPPLEMENTARY PRIVATE USE AREA-A': 'open',
 'SUPPLEMENTARY PRIVATE USE AREA-B': 'open',
 'SUPPLEMENTAL MATHEMATICAL OPERATORS': 'open',
-'MISCELLANEOUS SYMBOLS AND ARROWS': 'open',
 'SUPPLEMENTAL PUNCTUATION': 'open',
-'SUPPLEMENTAL MATHEMATICAL OPERATORS': 'open',
 'MISCELLANEOUS MATHEMATICAL SYMBOLS-A': 'open',
 'MISCELLANEOUS MATHEMATICAL SYMBOLS-B': 'open',
 'SUPPLEMENTAL ARROWS-A': 'open',
@@ -132,8 +167,7 @@ const SCRIPT_STATUS = {
 'CONTROL PICTURES': 'open',
 'CJK RADICALS SUPPLEMENT': 'open',
 'IDEOGRAPHIC DESCRIPTION CHARACTERS': 'open',
-'CJK UNIFIED IDEOGRAPHS': 'open',
-'CJK UNIFIED IDEOGRAPHS EXTENSION A': 'open',
+'CJK UNIFIED IDEOGRAPHS': 'open'
 };
 
 const UNICODE_BLOCKS = [
@@ -473,7 +507,13 @@ const SYMBOLS_BLOCKLIST = [
 '࿐', '༄', '༘', '༉', '༺', '༻', '༓',
 
 // Brahmi (Ancient India)
-'𑁬',
+'𑁬', '𑀅', '𑀆', '𑀇', '𑀈', '𑀉', '𑀊', '𑀋', '𑀌', '𑀍', '𑀎', '𑀏',
+
+// Samaritan (Sacred West Semitic script)
+'ࠁ', 'ࠂ', 'ࠃ', 'ࠄ', 'ࠅ', 'ࠆ', 'ࠇ', 'ࠈ', 'ࠉ', 'ࠊ', 'ࠋ', 'ࠌ', 'ࠍ', 'ࠎ', 'ࠏ', 'ࠐ', 'ࠑ', 'ࠒ', 'ࠓ', 'ࠔ',
+
+// Mandaic (Ancient Gnostic script)
+'ࡀ', 'ࡁ', 'ࡂ', 'ࡃ', 'ࡄ', 'ࡅ', 'ࡆ', 'ࡇ', 'ࡈ', 'ࡉ', 'ࡊ', 'ࡋ', 'ࡌ', 'ࡍ', 'ࡎ', 'ࡏ', 'ࡐ', 'ࡑ', 'ࡒ', 'ࡓ',
 
 // Cherokee
 'Ꭰ', 'Ꭱ', 'Ꭲ', 'Ꭳ', 'Ꭴ', 'Ꭵ', 'Ꭶ', 'Ꭷ', 'Ꭸ', 'Ꭹ', 'Ꭺ', 'Ꭻ', 'Ꭼ', 'Ꭽ', 'Ꭾ', 'Ꭿ', 'Ꮀ', 'Ꮁ', 'Ꮂ',
@@ -504,7 +544,7 @@ const SYMBOLS_BLOCKLIST = [
 'ㄅ', 'ㄆ', 'ㄇ', 'ㄈ', 'ㄉ', 'ㄊ', 'ㄋ', 'ㄌ', 'ㄍ', 'ㄎ', 'ㄏ', 'ㄐ', 'ㄑ', 'ㄒ',
 'ㄓ', 'ㄔ', 'ㄕ', 'ㄖ', 'ㄗ', 'ㄘ', 'ㄙ', 'ㄚ', 'ㄛ', 'ㄜ', 'ㄝ', 'ㄞ', 'ㄟ', 'ㄠ',
 
-// Yi Radicals (Chinese script)
+// Yi Radicals (Chinese minority scripts)
 '꒐', '꒑', '꒒', '꒓', '꒔', '꒕', '꒖', '꒗', '꒘', '꒙',
 '꒚', '꒛', '꒜', '꒝', '꒞', '꒟', '꒠', '꒡', '꒢', '꒣',
 
