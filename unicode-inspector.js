@@ -643,115 +643,128 @@ summary: {
 // ========== UI Interaction with Filter View and Export ==========
 
 function displayResults(analysis) {
-const resultsDiv = document.getElementById('results');
-let html = `
-<div class="summary">
-    <h2>Analysis Summary</h2>
-    <p>Total characters: ${analysis.characterCount}</p>
-    <p>Open script characters: <span class="status-open">${analysis.summary.openCount}</span></p>
-    <p>Closed script characters: <span class="status-closed">${analysis.summary.closedCount}</span></p>
-    <p>Unknown script characters: <span class="status-unknown">${analysis.summary.unknownCount}</span></p>
-    <p>Closed symbols detected: <span style="color: red; font-weight: bold;">${analysis.summary.closedSymbols.length}</span></p>
-</div>
-`;
+    const resultsDiv = document.getElementById('results');
 
-if (analysis.summary.closedSymbols.length > 0) {
-html += `
-    <div class="block-list">
-        <h3 style="color: red;">🚫 Closed Symbols Found</h3>
-        <ul>
-            ${analysis.summary.closedSymbols.map(sym => `<li>${sym} (U+${sym.codePointAt(0).toString(16).toUpperCase()})</li>`).join('')}
-        </ul>
+    // Determine current filter
+    const filter = document.querySelector('input[name="filter"]:checked')?.value || 'all';
+
+    let filteredCharacters = analysis.characterDetails;
+    if (filter === 'open') {
+        filteredCharacters = filteredCharacters.filter(c => c.status === 'open');
+    } else if (filter === 'closed') {
+        filteredCharacters = filteredCharacters.filter(c => c.status === 'closed');
+    } else if (filter === 'unknown') {
+        filteredCharacters = filteredCharacters.filter(c => c.status === 'unknown');
+    }
+    
+    // Start rendering output
+    let html = `
+    <div class="summary">
+        <h2>Analysis Summary</h2>
+        <p>Total characters: ${analysis.characterCount}</p>
+        <p>Open script characters: <span class="status-open">${analysis.summary.openCount}</span></p>
+        <p>Closed script characters: <span class="status-closed">${analysis.summary.closedCount}</span></p>
+        <p>Unknown script characters: <span class="status-unknown">${analysis.summary.unknownCount}</span></p>
+        <p>Closed symbols detected: <span style="color: red; font-weight: bold;">${analysis.summary.closedSymbols.length}</span></p>
     </div>
-`;
-}
+    `;
 
-html += `<div id="blockLists">`;
+    if (analysis.summary.closedSymbols.length > 0) {
+        html += `
+            <div class="block-list">
+                <h3 style="color: red;">🚫 Closed Symbols Found</h3>
+                <ul>
+                    ${analysis.summary.closedSymbols.map(sym => `<li>${sym} (U+${sym.codePointAt(0).toString(16).toUpperCase()})</li>`).join('')}
+                </ul>
+            </div>
+        `;
+    }
 
-if (analysis.summary.openBlocks.length > 0) {
-html += `
-    <div class="block-list">
-        <h3>✅ Open Script Blocks</h3>
-        <ul>
-            ${analysis.summary.openBlocks.map(block => `<li>${block}</li>`).join('')}
-        </ul>
-    </div>
-`;
-}
+    html += `<div id="blockLists">`;
 
-if (analysis.summary.closedBlocks.length > 0) {
-html += `
-    <div class="block-list">
-        <h3>🚫 Closed Script Blocks</h3>
-        <ul>
-            ${analysis.summary.closedBlocks.map(block => `<li>${block}</li>`).join('')}
-        </ul>
-    </div>
-`;
-}
+    if (analysis.summary.openBlocks.length > 0) {
+        html += `
+            <div class="block-list">
+                <h3>✅ Open Script Blocks</h3>
+                <ul>
+                    ${analysis.summary.openBlocks.map(block => `<li>${block}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+    }
 
-if (analysis.summary.unknownBlocks.length > 0) {
-html += `
-    <div class="block-list">
-        <h3>❓ Unknown Script Blocks</h3>
-        <ul>
-            ${analysis.summary.unknownBlocks.map(block => `<li>${block}</li>`).join('')}
-        </ul>
-    </div>
-`;
-}
+    if (analysis.summary.closedBlocks.length > 0) {
+        html += `
+            <div class="block-list">
+                <h3>🚫 Closed Script Blocks</h3>
+                <ul>
+                    ${analysis.summary.closedBlocks.map(block => `<li>${block}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+    }
 
-html += `</div>`;
+    if (analysis.summary.unknownBlocks.length > 0) {
+        html += `
+            <div class="block-list">
+                <h3>❓ Unknown Script Blocks</h3>
+                <ul>
+                    ${analysis.summary.unknownBlocks.map(block => `<li>${block}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+    }
 
-html += `
-<div id="characterTable">
-    <h2>Character Details (ALL view)</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Character</th>
-                <th>Unicode</th>
-                <th>Hex Code</th>
-                <th>Block</th>
-                <th>Status</th>
-                <th>Description</th>
+    html += `</div>`;
+
+    html += `
+    <div id="characterTable">
+        <h2>Character Details (${filter.toUpperCase()} view)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Character</th>
+                    <th>Unicode</th>
+                    <th>Hex Code</th>
+                    <th>Block</th>
+                    <th>Status</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    filteredCharacters.forEach(char => {
+        const isClosedSymbol = analysis.summary.closedSymbols.includes(char.character);
+        const isClosedBlock = char.status === 'closed';
+
+        let rowStyle = '';
+        if (isClosedSymbol) {
+            rowStyle = 'background-color: #ffe6e6;';
+        } else if (isClosedBlock) {
+            rowStyle = 'background-color: #ffcccc;';
+        }
+
+        html += `
+            <tr style="${rowStyle}">
+                <td data-label="Character">${char.character}</td>
+                <td data-label="Unicode">U+${char.codePoint.toString(16).toUpperCase().padStart(4, '0')}</td>
+                <td data-label="Hex Code">${char.hexCode}</td>
+                <td data-label="Block">${char.unicodeBlock || 'Unknown'}</td>
+                <td data-label="Status" class="status-${char.status}">${char.status.toUpperCase()}</td>
+                <td data-label="Description">${char.description}${isClosedSymbol ? ' <span style="color: red;">(Closed Symbol)</span>' : ''}</td>
             </tr>
-        </thead>
-        <tbody>
-`;
+        `;
+    });
 
-analysis.characterDetails.forEach(char => {
-const isClosedSymbol = analysis.summary.closedSymbols.includes(char.character);
-const isClosedBlock = char.status === 'closed';
+    html += `
+            </tbody>
+        </table>
+    </div>
+    `;
 
-let rowStyle = '';
-if (isClosedSymbol) {
-    rowStyle = 'background-color: #ffe6e6;';
-} else if (isClosedBlock) {
-    rowStyle = 'background-color: #ffcccc;';
+    resultsDiv.innerHTML = html;
 }
-
-html += `
-    <tr style="${rowStyle}">
-        <td data-label="Character">${char.character}</td>
-        <td data-label="Unicode">U+${char.codePoint.toString(16).toUpperCase().padStart(4, '0')}</td>
-        <td data-label="Hex Code">${char.hexCode}</td>
-        <td data-label="Block">${char.unicodeBlock || 'Unknown'}</td>
-        <td data-label="Status" class="status-${char.status}">${char.status.toUpperCase()}</td>
-        <td data-label="Description">${char.description}${isClosedSymbol ? ' <span style="color: red;">(Closed Symbol)</span>' : ''}</td>
-    </tr>
-`;
-});
-
-html += `
-        </tbody>
-    </table>
-</div>
-`;
-
-resultsDiv.innerHTML = html;
-}
-
 // ========== CSV Export ==========
 function exportToCSV(analysis) {
 if (!analysis) {
