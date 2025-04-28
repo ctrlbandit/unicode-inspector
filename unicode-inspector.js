@@ -765,6 +765,7 @@ function displayResults(analysis) {
 
     resultsDiv.innerHTML = html;
 }
+
 // ========== CSV Export ==========
 function exportToCSV(analysis) {
 if (!analysis) {
