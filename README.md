@@ -1,5 +1,5 @@
 # Unicode Script Analyzer 🔤
-[Go to the Github Page!](https://ctrlbandit.github.io/unicode-inspector/)
+[Go to the Website!](https://unicode-inspector.vercel.app)
 This tool analyzes input text and detects which Unicode script blocks characters belong to.  
 It identifies whether a script is Open or Closed (culturally protected).
 
