@@ -64,69 +64,205 @@
     }
   </style>
 </head>
-<body>
 
+<body>
   <header>
     <h1>✨ Open Unicode Symbols</h1>
     <p>Click any symbol to copy it to your clipboard. Scroll through categories.</p>
   </header>
 
-  <div class="category">
-    <h2>➗ Mathematical Symbols</h2>
-    <div class="symbol-block" data-start="0x2200" data-end="0x22FF"></div>
-    <div class="symbol-block" data-start="0x27C0" data-end="0x27EF"></div>
-    <div class="symbol-block" data-start="0x2980" data-end="0x29FF"></div>
-  </div>
-
-  <div class="category">
-    <h2>📦 Geometric & Block Elements</h2>
-    <div class="symbol-block" data-start="0x2500" data-end="0x257F"></div>
-    <div class="symbol-block" data-start="0x2580" data-end="0x259F"></div>
-    <div class="symbol-block" data-start="0x25A0" data-end="0x25FF"></div>
-    <div class="symbol-block" data-start="0x1F780" data-end="0x1F7FF"></div>
-  </div>
-
-  <div class="category">
-    <h2>☀️ Miscellaneous Symbols</h2>
-    <div class="symbol-block" data-start="0x2600" data-end="0x26FF"></div>
-  </div>
-
-  <div class="category">
-    <h2>✦ Dingbats</h2>
-    <div class="symbol-block" data-start="0x2700" data-end="0x27BF"></div>
-  </div>
-
-  <div class="category">
-    <h2>🎭 Emoticons & Pictographs</h2>
-    <div class="symbol-block" data-start="0x1F600" data-end="0x1F64F"></div>
-    <div class="symbol-block" data-start="0x1F300" data-end="0x1F5FF"></div>
-    <div class="symbol-block" data-start="0x1F680" data-end="0x1F6FF"></div>
-    <div class="symbol-block" data-start="0x1F900" data-end="0x1F9FF"></div>
-    <div class="symbol-block" data-start="0x1FA70" data-end="0x1FAFF"></div>
-  </div>
+  <div id="categories-container"></div>
 
   <footer>
     Built by ctrlbandit · Unicode Inspector — 2025
   </footer>
-
-  <script>
-    document.querySelectorAll('.symbol-block').forEach(block => {
-      const start = parseInt(block.dataset.start);
-      const end = parseInt(block.dataset.end);
-      for (let code = start; code <= end; code++) {
-        const char = String.fromCodePoint(code);
-        if (!/\p{C}/u.test(char)) {
-          const span = document.createElement('span');
-          span.textContent = char;
-          span.onclick = () => {
-            navigator.clipboard.writeText(char);
-            span.style.background = '#cceeff';
-            setTimeout(() => span.style.background = '', 400);
-          };
-          block.appendChild(span);
-        }
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Open Symbols</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f8fcff;
+        color: #222;
+        padding: 20px;
+        max-width: 1000px;
+        margin: auto;
       }
-    });
-  </script>
+  
+      header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+  
+      h1 {
+        font-size: 2em;
+        color: #007acc;
+      }
+  
+      .category {
+        margin-bottom: 60px;
+      }
+  
+      .category h2 {
+        color: #005b9f;
+        font-size: 1.3em;
+        border-bottom: 2px solid #cce7ff;
+        padding-bottom: 5px;
+        margin-bottom: 10px;
+      }
+  
+      .category h3 {
+        margin-top: 1em;
+        font-size: 1.1em;
+        color: #444;
+      }
+  
+      .symbol-block {
+        font-size: 1.6em;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        user-select: text;
+        line-height: 2;
+      }
+  
+      .symbol-block span {
+        padding: 6px 8px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+  
+      .symbol-block span:hover {
+        background: #e0f2ff;
+      }
+  
+      footer {
+        text-align: center;
+        margin-top: 60px;
+        color: #888;
+        font-size: 0.9em;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <header>
+      <h1>✨ Open Unicode Symbols</h1>
+      <p>Click any symbol to copy it to your clipboard. Scroll through categories.</p>
+    </header>
+  
+    <div id="categories-container"></div>
+  
+    <footer>
+      Built by ctrlbandit · Unicode Inspector — 2025
+    </footer>
+    <script>
+      let openBlocks = {
+        'Mathematical Operators': [0x2200, 0x22FF],
+        'Miscellaneous Mathematical Symbols-A': [0x27C0, 0x27EF],
+        'Miscellaneous Mathematical Symbols-B': [0x2980, 0x29FF],
+        'Geometric Shapes': [0x25A0, 0x25FF],
+        'Box Drawing': [0x2500, 0x257F],
+        'Block Elements': [0x2580, 0x259F],
+        'Dingbats': [0x2700, 0x27BF],
+        'Miscellaneous Symbols': [0x2600, 0x26FF],
+        'Misc. Technical': [0x2300, 0x23FF],
+        'Braille Patterns': [0x2800, 0x28FF],
+        'Supplemental Symbols & Pictographs': [0x1F900, 0x1F9FF],
+        'Emoticons': [0x1F600, 0x1F64F],
+        'Transport Symbols': [0x1F680, 0x1F6FF],
+        'Misc. Symbols & Pictographs': [0x1F300, 0x1F5FF],
+        'Symbols Ext-A': [0x1FA70, 0x1FAFF],
+        'Extended Shapes': [0x1F780, 0x1F7FF],
+      };
+  
+      let hearts = ['❤','❣','♡','♥','💕','💖','💗','💘','💝','💓','💞','💟'];
+      let stars = ['★','☆','✪','✩','✫','✬','✭','✮','✯','✰','✵','✶','✷','✸','✹','✺','✻','✼','✽','✾','✿','🌟','🌠'];
+  
+      let hasRenderedHearts = false;
+      let hasRenderedStars = false;
+  
+      let container = document.getElementById('categories-container');
+  
+      for (let blockName in openBlocks) {
+        let [start, end] = openBlocks[blockName];
+  
+        let section = document.createElement('div');
+        section.className = 'category';
+  
+        let h2 = document.createElement('h2');
+        h2.textContent = blockName;
+        section.appendChild(h2);
+  
+        let block = document.createElement('div');
+        block.className = 'symbol-block';
+  
+        for (let code = start; code <= end; code++) {
+          let char = String.fromCodePoint(code);
+          if (!/\p{C}/u.test(char)) {
+            let span = document.createElement('span');
+            span.textContent = char;
+            span.onclick = () => {
+              navigator.clipboard.writeText(char);
+              span.style.background = '#cceeff';
+              setTimeout(() => span.style.background = '', 300);
+            };
+            block.appendChild(span);
+          }
+        }
+  
+        section.appendChild(block);
+  
+        // Subcategory: Heart Symbols
+        if (!hasRenderedHearts && (blockName === 'Dingbats' || blockName === 'Miscellaneous Symbols')) {
+          let heartHeading = document.createElement('h3');
+          heartHeading.textContent = '❤️ Heart Symbols';
+          section.appendChild(heartHeading);
+  
+          let heartBlock = document.createElement('div');
+          heartBlock.className = 'symbol-block';
+          hearts.forEach(char => {
+            let span = document.createElement('span');
+            span.textContent = char;
+            span.onclick = () => {
+              navigator.clipboard.writeText(char);
+              span.style.background = '#cceeff';
+              setTimeout(() => span.style.background = '', 300);
+            };
+            heartBlock.appendChild(span);
+          });
+          section.appendChild(heartBlock);
+          hasRenderedHearts = true;
+        }
+  
+        // Subcategory: Star Symbols
+        if (!hasRenderedStars && (blockName === 'Dingbats' || blockName === 'Geometric Shapes')) {
+          let starHeading = document.createElement('h3');
+          starHeading.textContent = '✦ Star Symbols';
+          section.appendChild(starHeading);
+  
+          let starBlock = document.createElement('div');
+          starBlock.className = 'symbol-block';
+          stars.forEach(char => {
+            let span = document.createElement('span');
+            span.textContent = char;
+            span.onclick = () => {
+              navigator.clipboard.writeText(char);
+              span.style.background = '#cceeff';
+              setTimeout(() => span.style.background = '', 300);
+            };
+            starBlock.appendChild(span);
+          });
+          section.appendChild(starBlock);
+          hasRenderedStars = true;
+        }
+  
+        container.appendChild(section);
+      }
+    </script>
 </body>
 </html>
