@@ -3,11 +3,19 @@
   <url>
     <loc>https://unicode-inspector.vercel.app/</loc>
     <lastmod>2025-05-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://unicode-inspector.vercel.app/open-symbols.html</loc>
     <lastmod>2025-05-03</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://unicode-inspector.vercel.app/google14b9070aa9ca2967.html</loc>
+    <lastmod>2025-05-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
   </url>
 </urlset>
