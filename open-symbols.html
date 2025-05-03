@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Open Symbols</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8fcff;
+      color: #222;
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #007acc;
+    }
+
+    .category {
+      margin-bottom: 60px;
+    }
+
+    .category h2 {
+      color: #005b9f;
+      font-size: 1.3em;
+      border-bottom: 2px solid #cce7ff;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+
+    .symbol-block {
+      font-size: 1.6em;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      user-select: text;
+      line-height: 2;
+    }
+
+    .symbol-block span {
+      padding: 6px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .symbol-block span:hover {
+      background: #e0f2ff;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: #888;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>✨ Open Unicode Symbols</h1>
+    <p>Click any symbol to copy it to your clipboard. Scroll through categories.</p>
+  </header>
+
+  <div class="category">
+    <h2>➗ Mathematical Symbols</h2>
+    <div class="symbol-block" data-start="0x2200" data-end="0x22FF"></div>
+    <div class="symbol-block" data-start="0x27C0" data-end="0x27EF"></div>
+    <div class="symbol-block" data-start="0x2980" data-end="0x29FF"></div>
+  </div>
+
+  <div class="category">
+    <h2>📦 Geometric & Block Elements</h2>
+    <div class="symbol-block" data-start="0x2500" data-end="0x257F"></div>
+    <div class="symbol-block" data-start="0x2580" data-end="0x259F"></div>
+    <div class="symbol-block" data-start="0x25A0" data-end="0x25FF"></div>
+    <div class="symbol-block" data-start="0x1F780" data-end="0x1F7FF"></div>
+  </div>
+
+  <div class="category">
+    <h2>☀️ Miscellaneous Symbols</h2>
+    <div class="symbol-block" data-start="0x2600" data-end="0x26FF"></div>
+  </div>
+
+  <div class="category">
+    <h2>✦ Dingbats</h2>
+    <div class="symbol-block" data-start="0x2700" data-end="0x27BF"></div>
+  </div>
+
+  <div class="category">
+    <h2>🎭 Emoticons & Pictographs</h2>
+    <div class="symbol-block" data-start="0x1F600" data-end="0x1F64F"></div>
+    <div class="symbol-block" data-start="0x1F300" data-end="0x1F5FF"></div>
+    <div class="symbol-block" data-start="0x1F680" data-end="0x1F6FF"></div>
+    <div class="symbol-block" data-start="0x1F900" data-end="0x1F9FF"></div>
+    <div class="symbol-block" data-start="0x1FA70" data-end="0x1FAFF"></div>
+  </div>
+
+  <footer>
+    Built by ctrlbandit · Unicode Inspector — 2025
+  </footer>
+
+  <script>
+    document.querySelectorAll('.symbol-block').forEach(block => {
+      const start = parseInt(block.dataset.start);
+      const end = parseInt(block.dataset.end);
+      for (let code = start; code <= end; code++) {
+        const char = String.fromCodePoint(code);
+        if (!/\p{C}/u.test(char)) {
+          const span = document.createElement('span');
+          span.textContent = char;
+          span.onclick = () => {
+            navigator.clipboard.writeText(char);
+            span.style.background = '#cceeff';
+            setTimeout(() => span.style.background = '', 400);
+          };
+          block.appendChild(span);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
