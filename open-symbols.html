@@ -3,15 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Open Symbols</title>
+  <meta name="description" content="Browse and copy open Unicode symbols that are safe to use. Mathematical operators, geometric shapes, and other culturally open symbols.">
+  <meta name="keywords" content="unicode symbols, open symbols, mathematical operators, geometric shapes, safe symbols, unicode inspector">
+  <meta name="author" content="ctrlbandit (Shadorux)">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://unicode-inspector.vercel.app/open-symbols.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <title>Open Unicode Symbols - Safe to Use Symbol Library</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f8fcff;
-      color: #222;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+      color: #ffffff;
       padding: 20px;
       max-width: 1000px;
       margin: auto;
+      min-height: 100vh;
     }
 
     header {
@@ -21,7 +28,8 @@
 
     h1 {
       font-size: 2em;
-      color: #007acc;
+      color: #ff0000;
+      font-weight: bold;
     }
 
     .category {
@@ -29,11 +37,12 @@
     }
 
     .category h2 {
-      color: #005b9f;
+      color: #ff0000;
       font-size: 1.3em;
-      border-bottom: 2px solid #cce7ff;
+      border-bottom: 2px solid #ff0000;
       padding-bottom: 5px;
       margin-bottom: 10px;
+      font-weight: bold;
     }
 
     .symbol-block {
@@ -50,22 +59,43 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background 0.2s;
+      background: rgba(255, 0, 0, 0.1);
+      border: 1px solid #ff0000;
     }
 
     .symbol-block span:hover {
-      background: #e0f2ff;
+      background: rgba(255, 0, 0, 0.2);
     }
 
     footer {
       text-align: center;
       margin-top: 60px;
-      color: #888;
+      color: #ffffff;
       font-size: 0.9em;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #333;
+    }
+    
+    footer a {
+      color: #ff6666;
+      text-decoration: none;
+    }
+    
+    footer a:hover {
+      color: #ff0000;
     }
   </style>
 </head>
 
 <body>
+  <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 12px; margin-bottom: 30px; border: 2px solid #ff0000; box-shadow: 0 8px 25px rgba(255, 0, 0, 0.2);">
+    <p style="color: white; font-size: 16px; margin: 0; line-height: 1.6;">
+      <strong>Hello there.</strong> Apologies for the sudden big changes you see. I left this project rotting for 5 months; I feel motivation to continue it again. Thank you for your understanding.
+    </p>
+  </div>
+
   <header>
     <h1>✨ Open Unicode Symbols</h1>
     <p>Click any symbol to copy it to your clipboard. Scroll through categories.</p>
@@ -74,82 +104,8 @@
   <div id="categories-container"></div>
 
   <footer>
-    Built by ctrlbandit · Unicode Inspector — 2025
+    Built by ctrlbandit (Shadorux) · Unicode Inspector — 2025
   </footer>
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Open Symbols</title>
-    <style>
-      body {
-        font-family: 'Segoe UI', sans-serif;
-        background-color: #f8fcff;
-        color: #222;
-        padding: 20px;
-        max-width: 1000px;
-        margin: auto;
-      }
-  
-      header {
-        text-align: center;
-        margin-bottom: 40px;
-      }
-  
-      h1 {
-        font-size: 2em;
-        color: #007acc;
-      }
-  
-      .category {
-        margin-bottom: 60px;
-      }
-  
-      .category h2 {
-        color: #005b9f;
-        font-size: 1.3em;
-        border-bottom: 2px solid #cce7ff;
-        padding-bottom: 5px;
-        margin-bottom: 10px;
-      }
-  
-      .category h3 {
-        margin-top: 1em;
-        font-size: 1.1em;
-        color: #444;
-      }
-  
-      .symbol-block {
-        font-size: 1.6em;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        user-select: text;
-        line-height: 2;
-      }
-  
-      .symbol-block span {
-        padding: 6px 8px;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.2s;
-      }
-  
-      .symbol-block span:hover {
-        background: #e0f2ff;
-      }
-  
-      footer {
-        text-align: center;
-        margin-top: 60px;
-        color: #888;
-        font-size: 0.9em;
-      }
-    </style>
-  </head>
-  
-  <body>
   
     <script>
       let openBlocks = {

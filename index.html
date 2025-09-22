@@ -2,58 +2,132 @@
 <html lang="en">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Inspect, copy, and explore open Unicode symbols, arrows, kaomojis and more. Built for creatives and designers.">
-    <meta name="keywords" content="unicode, unicode inspector, clawgical, open unicode symbols, kaomoji, arrow symbols, emoji codes, unicode search">
-    <meta name="author" content="clawgical / ctrlbandit">
+    <meta name="description" content="Check if Unicode symbols are culturally protected before using them. Avoid cultural appropriation with our symbol checker tool. Safe for Discord, social media, and design.">
+    <meta name="keywords" content="cultural appropriation checker, symbols to avoid, protected unicode symbols, cultural symbol checker, discord symbol checker, symbols I shouldn't use, cultural respect tool, unicode cultural awareness">
+    <meta name="author" content="ctrlbandit (Shadorux)">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Unicode Character Inspector">
+    <meta property="og:description" content="Check if Unicode symbols are culturally protected before using them. Perfect for Discord, social media, and design work.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://unicode-inspector.vercel.app/">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Unicode Character Inspector">
+    <meta name="twitter:description" content="Check if Unicode symbols are culturally protected before using them. Perfect for Discord and social media.">
+    <link rel="canonical" href="https://unicode-inspector.vercel.app/">
     <title>Unicode Character Inspector</title>
-    <link rel="icon" type="image/svg+xml" href="checker.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
     <link rel="stylesheet" href="mobile.css" media="only screen and (max-width: 768px)">
     <script src="unicode-inspector.js"></script> 
     <script defer src="https://cloud.umami.is/script.js" data-website-id="6eec386e-eb4d-42d4-8d3e-160f531484c1"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Unicode Character Inspector",
+      "description": "Identify culturally protected Unicode symbols to avoid cultural appropriation. Built for respectful design and cultural awareness.",
+      "url": "https://unicode-inspector.vercel.app/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "ctrlbandit (Shadorux)"
+      },
+      "keywords": "unicode, cultural appropriation, symbols, design, respect, cultural awareness"
+    }
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            color: #333;
-            max-width: 1000px;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            min-height: 100vh;
+            max-width: 1200px;
             margin: 0 auto;
-            text-align: center; /* Center all text */
+            text-align: center;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
         
         h1, h2, h3 {
-            color: #2c3e50;
-            text-align: center; /* Ensure headings are centered */
+            color: #ff0000;
+            text-align: center;
+            font-weight: bold;
+            font-size: normal;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            color: #ff0000;
+            font-weight: bold;
         }
         
         textarea {
             width: 100%;
-            min-height: 100px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 10px;
+            height: 100px;
+            border: 2px solid #ff0000;
+            border-radius: 8px;
+            padding: 15px;
             font-size: 16px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             box-sizing: border-box;
             margin-left: auto;
             margin-right: auto;
-            display: block; /* Center the textarea */
+            display: block;
+            background: #000000;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            resize: none;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #ff6666;
+        }
+        
+        textarea::placeholder {
+            color: #cccccc;
         }
         
         button {
-            background-color: #3498db;
+            background: #ff0000;
             color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 4px;
+            border: 2px solid #ff0000;
+            padding: 12px 20px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
-            margin: 0 5px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            margin: 0 8px;
         }
         
         button:hover {
-            background-color: #2980b9;
+            background: #ff3333;
         }
         
         #results {
@@ -66,49 +140,77 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 20px;
             margin-left: auto;
             margin-right: auto;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.2);
+            border: 2px solid #ff0000;
         }
         
         th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center; /* Center table content */
+            border: 1px solid #333;
+            padding: 12px;
+            text-align: center;
+            color: #ffffff;
+            font-size: 14px;
         }
         
         th {
-            background-color: #f2f2f2;
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
         
         tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: rgba(255, 0, 0, 0.05);
+        }
+        
+        tr:hover {
+            background-color: rgba(255, 0, 0, 0.1);
+            transition: all 0.3s ease;
         }
         
         .status-open {
-            color: green;
+            color: #00ff00;
             font-weight: bold;
+            background: rgba(0, 255, 0, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
         }
         
         .status-closed {
-            color: red;
+            color: #ff0000;
             font-weight: bold;
+            background: rgba(255, 0, 0, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
         }
         
         .status-unknown {
-            color: orange;
+            color: #ffaa00;
             font-weight: bold;
+            background: rgba(255, 170, 0, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
         }
         
         .summary {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
             text-align: center;
-            width: 80%;
+            width: 90%;
             margin-left: auto;
             margin-right: auto;
+            border: 2px solid #ff0000;
+            color: #ffffff;
         }
         
         #blockLists {
@@ -173,10 +275,46 @@
         }
         
         footer {
-            margin-top: 30px;
+            margin-top: 40px;
             text-align: center;
             font-size: 14px;
-            color: #666;
+            color: #888;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.1);
+        }
+        
+        footer a {
+            color: #ff6666;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        footer a:hover {
+            color: #ff0000;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Add some cool particle effects */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 0, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
         }
     </style>
 </head>
@@ -184,8 +322,14 @@
 <body>
     <div class="container">
 
+        <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 12px; margin-bottom: 30px; border: 2px solid #ff0000; box-shadow: 0 8px 25px rgba(255, 0, 0, 0.2);">
+            <p style="color: white; font-size: 16px; margin: 0; line-height: 1.6;">
+                <strong>Hello there.</strong> Apologies for the sudden big changes you see. I left this project rotting for 5 months; I feel motivation to continue it again. Thank you for your understanding.
+            </p>
+        </div>
+
         <h1>Unicode Character Inspector</h1>
-        <p>Analyze text to identify open and closed Unicode scripts and symbols</p>
+        <p>Identify culturally protected Unicode symbols to avoid appropriation. Built for respectful design and cultural awareness.</p>
 
         <textarea id="inputText" placeholder="Enter text to analyze..."></textarea>
 
@@ -207,10 +351,17 @@
 
         <div id="results"></div>
 
+        <div class="update-log" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(255, 0, 0, 0.1)); padding: 20px; border-radius: 12px; margin: 25px 0; text-align: left; max-width: 700px; margin-left: auto; margin-right: auto; border: 2px solid #ff0000; box-shadow: 0 8px 25px rgba(255, 0, 0, 0.2); color: #e0e0e0;">
+            <h3 style="color: #ff0000; margin-top: 0; text-align: center; text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);">📝 Update Log</h3>
+            <div style="margin-bottom: 10px;">
+                <strong style="color: #ff6666;">9/22/25:</strong> Bug Fixes and UI Update
+            </div>
+        </div>
+
         <footer>
             Updated to latest Unicode 16.0 — <a href="https://www.unicode.org/charts/">View Unicode Charts</a><br>
             Sources: <a href="https://rentry.co/clsdsymbls">Closed Symbols List</a> | <a href="https://rentry.co/opencultures">Open Cultures List</a> | <a href="https://docs.google.com/document/d/1raqD3YyNmXGw72WbReQW3qBivWgZjyFM1FXilba0A-4/edit?tab=t.0">Google Doc Reference</a><br>
-            © 2025 ctrlbandit
+            Creator: <a href="https://github.com/ctrlbandit" target="_blank">@ctrlbandit</a> | © 2025 ctrlbandit (Shadorux)
         </footer>
    
 </body>

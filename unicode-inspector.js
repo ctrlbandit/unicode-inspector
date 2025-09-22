@@ -660,21 +660,21 @@ function displayResults(analysis) {
     // Start rendering output
     let html = `
     <div class="summary">
-        <h2>Analysis Summary</h2>
-        <p>Total characters: ${analysis.characterCount}</p>
-        <p>Open script characters: <span class="status-open">${analysis.summary.openCount}</span></p>
-        <p>Closed script characters: <span class="status-closed">${analysis.summary.closedCount}</span></p>
-        <p>Unknown script characters: <span class="status-unknown">${analysis.summary.unknownCount}</span></p>
-        <p>Closed symbols detected: <span style="color: red; font-weight: bold;">${analysis.summary.closedSymbols.length}</span></p>
+        <h2 style="color: #ff0000; font-weight: bold; margin-bottom: 15px;">Analysis Summary</h2>
+        <p style="color: #ffffff; margin: 8px 0;">Total characters: ${analysis.characterCount}</p>
+        <p style="color: #ffffff; margin: 8px 0;">Open script characters: <span class="status-open">${analysis.summary.openCount}</span></p>
+        <p style="color: #ffffff; margin: 8px 0;">Closed script characters: <span class="status-closed">${analysis.summary.closedCount}</span></p>
+        <p style="color: #ffffff; margin: 8px 0;">Unknown script characters: <span class="status-unknown">${analysis.summary.unknownCount}</span></p>
+        <p style="color: #ffffff; margin: 8px 0;">Closed symbols detected: <span style="color: #ff0000; font-weight: bold;">${analysis.summary.closedSymbols.length}</span></p>
     </div>
     `;
 
     if (analysis.summary.closedSymbols.length > 0) {
         html += `
-            <div class="block-list">
-                <h3 style="color: red;">🚫 Closed Symbols Found</h3>
-                <ul>
-                    ${analysis.summary.closedSymbols.map(sym => `<li>${sym} (U+${sym.codePointAt(0).toString(16).toUpperCase()})</li>`).join('')}
+            <div class="block-list" style="background: rgba(0, 0, 0, 0.8); padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px solid #ff0000;">
+                <h3 style="color: #ff0000; font-weight: bold;">🚫 Closed Symbols Found</h3>
+                <ul style="color: #ffffff;">
+                    ${analysis.summary.closedSymbols.map(sym => `<li style="margin: 5px 0;">${sym} (U+${sym.codePointAt(0).toString(16).toUpperCase()})</li>`).join('')}
                 </ul>
             </div>
         `;
@@ -684,10 +684,10 @@ function displayResults(analysis) {
 
     if (analysis.summary.openBlocks.length > 0) {
         html += `
-            <div class="block-list">
-                <h3>✅ Open Script Blocks</h3>
-                <ul>
-                    ${analysis.summary.openBlocks.map(block => `<li>${block}</li>`).join('')}
+            <div class="block-list" style="background: rgba(0, 0, 0, 0.8); padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px solid #00ff00;">
+                <h3 style="color: #00ff00; font-weight: bold;">✅ Open Script Blocks</h3>
+                <ul style="color: #ffffff;">
+                    ${analysis.summary.openBlocks.map(block => `<li style="margin: 5px 0;">${block}</li>`).join('')}
                 </ul>
             </div>
         `;
@@ -695,10 +695,10 @@ function displayResults(analysis) {
 
     if (analysis.summary.closedBlocks.length > 0) {
         html += `
-            <div class="block-list">
-                <h3>🚫 Closed Script Blocks</h3>
-                <ul>
-                    ${analysis.summary.closedBlocks.map(block => `<li>${block}</li>`).join('')}
+            <div class="block-list" style="background: rgba(0, 0, 0, 0.8); padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px solid #ff0000;">
+                <h3 style="color: #ff0000; font-weight: bold;">🚫 Closed Script Blocks</h3>
+                <ul style="color: #ffffff;">
+                    ${analysis.summary.closedBlocks.map(block => `<li style="margin: 5px 0;">${block}</li>`).join('')}
                 </ul>
             </div>
         `;
@@ -706,10 +706,10 @@ function displayResults(analysis) {
 
     if (analysis.summary.unknownBlocks.length > 0) {
         html += `
-            <div class="block-list">
-                <h3>❓ Unknown Script Blocks</h3>
-                <ul>
-                    ${analysis.summary.unknownBlocks.map(block => `<li>${block}</li>`).join('')}
+            <div class="block-list" style="background: rgba(0, 0, 0, 0.8); padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px solid #ffaa00;">
+                <h3 style="color: #ffaa00; font-weight: bold;">❓ Unknown Script Blocks</h3>
+                <ul style="color: #ffffff;">
+                    ${analysis.summary.unknownBlocks.map(block => `<li style="margin: 5px 0;">${block}</li>`).join('')}
                 </ul>
             </div>
         `;
