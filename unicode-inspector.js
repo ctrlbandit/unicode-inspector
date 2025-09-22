@@ -740,9 +740,9 @@ function displayResults(analysis) {
 
         let rowStyle = '';
         if (isClosedSymbol) {
-            rowStyle = 'background-color: #ffe6e6;';
+            rowStyle = 'background-color: rgba(255, 0, 0, 0.1);';
         } else if (isClosedBlock) {
-            rowStyle = 'background-color: #ffcccc;';
+            rowStyle = 'background-color: rgba(255, 0, 0, 0.05);';
         }
 
         html += `
