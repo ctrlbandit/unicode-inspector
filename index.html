@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unicode Character Inspector - Redirecting...</title>
-    <meta http-equiv="refresh" content="3;url=https://unicode-inspector.vercel.app/">
+    <title>Redirecting to Unicode Inspector...</title>
+    <meta http-equiv="refresh" content="0;url=https://unicode-inspector.vercel.app/">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,6 +17,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            margin: 0;
         }
         .redirect-box {
             background: rgba(255, 0, 0, 0.1);
@@ -51,38 +52,23 @@
         .vercel-link:hover {
             background: #ff3333;
         }
-        .countdown {
-            font-size: 24px;
-            color: #ffaa00;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
     <div class="redirect-box">
         <h1>🔄 Redirecting...</h1>
-        <p><strong>This GitHub page is no longer active.</strong></p>
-        <p>You're being redirected to the main site in <span class="countdown" id="countdown">3</span> seconds...</p>
-        <p>If you're not redirected automatically, click the button below:</p>
-        <a href="https://unicode-inspector.vercel.app/" class="vercel-link">Go to Unicode Inspector (Vercel)</a>
+        <p><strong>This GitHub page has moved!</strong></p>
+        <p>You're being redirected to the main site...</p>
+        <p>If you're not redirected automatically, click below:</p>
+        <a href="https://unicode-inspector.vercel.app/" class="vercel-link">Go to Unicode Inspector</a>
         <p style="color: #888; font-size: 14px; margin-top: 30px;">
-            The GitHub page will be permanently disabled on October 1st, 2025.
+            The GitHub page is no longer active. Please use the Vercel link.
         </p>
     </div>
 
     <script>
-        let countdown = 3;
-        const countdownElement = document.getElementById('countdown');
-        
-        const timer = setInterval(() => {
-            countdown--;
-            countdownElement.textContent = countdown;
-            
-            if (countdown <= 0) {
-                clearInterval(timer);
-                window.location.href = 'https://unicode-inspector.vercel.app/';
-            }
-        }, 1000);
+        // Immediate redirect
+        window.location.replace('https://unicode-inspector.vercel.app/');
     </script>
 </body>
 </html>
