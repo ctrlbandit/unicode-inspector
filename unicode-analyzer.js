@@ -5,6 +5,20 @@ const SCRIPT_STATUS = {
 'TIBETAN': 'closed',
 'HEBREW': 'closed',
 'SYRIAC': 'closed',
+'HIRAGANA': 'closed',
+'KATAKANA': 'closed',
+'KATAKANA PHONETIC EXTENSIONS': 'closed',
+'CJK UNIFIED IDEOGRAPHS': 'closed',
+'CJK UNIFIED IDEOGRAPHS EXTENSION A': 'closed',
+'CJK SYMBOLS AND PUNCTUATION': 'closed',
+'CJK COMPATIBILITY FORMS': 'closed',
+'ENCLOSED CJK LETTERS AND MONTHS': 'closed',
+'HANGUL SYLLABLES': 'closed',
+'HANGUL JAMO': 'closed',
+'HANGUL JAMO EXTENDED-A': 'closed',
+'HANGUL JAMO EXTENDED-B': 'closed',
+'BOPOMFOO': 'closed',
+'BOPOMFOO EXTENDED': 'closed',
 'IMPERIAL ARAMAIC': 'closed',
 'ARABIC': 'closed',
 'ARABIC SUPPLEMENT': 'closed',
@@ -95,9 +109,6 @@ const SCRIPT_STATUS = {
 'GREEK': 'open',
 'CYRILLIC': 'open',
 'GENERAL PUNCTUATION': 'open',
-'CJK SYMBOLS AND PUNCTUATION': 'open',
-'CJK COMPATIBILITY FORMS': 'open',
-'CJK UNIFIED IDEOGRAPHS EXTENSION A': 'open',
 'MISCELLANEOUS SYMBOLS AND ARROWS': 'open',
 'MATHEMATICAL OPERATORS': 'open',
 'GEOMETRIC SHAPES': 'open',
@@ -110,7 +121,6 @@ const SCRIPT_STATUS = {
 'LETTERLIKE SYMBOLS': 'open',
 'MATHEMATICAL ALPHANUMERIC SYMBOLS': 'open',
 'ENCLOSED ALPHANUMERICS': 'open',
-'ENCLOSED CJK LETTERS AND MONTHS': 'open',
 'ARROWS': 'open',
 'VARIATION SELECTORS': 'open',
 'VARIATION SELECTORS SUPPLEMENT': 'open',
@@ -161,9 +171,8 @@ const SCRIPT_STATUS = {
 'SUPPLEMENTAL ARROWS-B': 'open',
 'OPTICAL CHARACTER RECOGNITION': 'open',
 'CONTROL PICTURES': 'open',
-'CJK RADICALS SUPPLEMENT': 'open',
-'IDEOGRAPHIC DESCRIPTION CHARACTERS': 'open',
-'CJK UNIFIED IDEOGRAPHS': 'open'
+'CJK RADICALS SUPPLEMENT': 'closed',
+'IDEOGRAPHIC DESCRIPTION CHARACTERS': 'closed',
 };
 
 const UNICODE_BLOCKS = [
@@ -380,6 +389,13 @@ const SYMBOLS_BLOCKLIST = [
 
 // Katakana (Japanese phonetic script)
 'ア', 'イ', 'ウ', 'エ', 'オ', 'カ', 'キ', 'ク', 'ケ', 'コ',
+'サ', 'シ', 'ス', 'セ', 'ソ', 'タ', 'チ', 'ツ', 'テ', 'ト',
+'ナ', 'ニ', 'ヌ', 'ネ', 'ノ', 'ハ', 'ヒ', 'フ', 'ヘ', 'ホ',
+'マ', 'ミ', 'ム', 'メ', 'モ', 'ヤ', 'ユ', 'ヨ', 'ラ', 'リ',
+'ル', 'レ', 'ロ', 'ワ', 'ヲ', 'ン', 'ガ', 'ギ', 'グ', 'ゲ', 'ゴ',
+'ザ', 'ジ', 'ズ', 'ゼ', 'ゾ', 'ダ', 'ヂ', 'ヅ', 'デ', 'ド',
+'バ', 'ビ', 'ブ', 'ベ', 'ボ', 'パ', 'ピ', 'プ', 'ペ', 'ポ',
+'ャ', 'ュ', 'ョ', 'ッ', 'ー', 'ァ', 'ィ', 'ゥ', 'ェ', 'ォ',
 
 // Hiragana (Japanese phonetic script)
 'あ', 'い', 'う', 'え', 'お', 'か', 'き', 'く', 'け', 'こ',
