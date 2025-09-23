@@ -37,7 +37,15 @@ const commands = [
 // Register the command
 const rest = new REST({ version: '10' }).setToken(BOT_TOKEN);
 
-(async () => {
+// Bot ready event
+client.once('ready', async () => {
+    console.log(`🤖 Bot is ready! Logged in as ${client.user.tag}`);
+    console.log(`🔗 Invite link: https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&permissions=2048&scope=bot%20applications.commands`);
+    
+    // Set rich presence
+    client.user.setActivity('spectra;help', { type: 0 });
+    
+    // Register commands when bot is ready
     try {
         console.log('Started refreshing application (/) commands.');
 
@@ -52,7 +60,7 @@ const rest = new REST({ version: '10' }).setToken(BOT_TOKEN);
     } catch (error) {
         console.error('Error registering commands:', error);
     }
-})();
+});
 
 // Handle slash commands
 client.on('interactionCreate', async interaction => {
@@ -141,14 +149,6 @@ client.on('interactionCreate', async interaction => {
     }
 });
 
-// Bot ready event
-client.once('ready', () => {
-    console.log(`🤖 Bot is ready! Logged in as ${client.user.tag}`);
-    console.log(`🔗 Invite link: https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&permissions=2048&scope=bot%20applications.commands`);
-    
-    // Set rich presence
-    client.user.setActivity('spectra;help', { type: 0 });
-});
 
 // Error handling
 client.on('error', console.error);
