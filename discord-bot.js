@@ -76,20 +76,20 @@ client.on('messageCreate', async message => {
             timestamp: new Date().toISOString()
         };
         
-        await message.reply({ embeds: [embed] });
+        await message.channel.send({ embeds: [embed] });
     }
     
     // Handle spectra;displayname command
     if (message.content.toLowerCase().startsWith('spectra;displayname')) {
         const args = message.content.split(' ');
         if (args.length < 2) {
-            await message.reply('❌ Please mention a user! Usage: `spectra;displayname @user`');
+            await message.channel.send('❌ Please mention a user! Usage: `spectra;displayname @user`');
             return;
         }
         
         const user = message.mentions.users.first();
         if (!user) {
-            await message.reply('❌ Please mention a valid user! Usage: `spectra;displayname @user`');
+            await message.channel.send('❌ Please mention a valid user! Usage: `spectra;displayname @user`');
             return;
         }
         
@@ -162,13 +162,11 @@ client.on('messageCreate', async message => {
                 });
             }
 
-            await message.reply({ embeds: [embed] });
+            await message.channel.send({ embeds: [embed] });
 
         } catch (error) {
             console.error('Error analyzing display name:', error);
-            await message.reply({ 
-                content: '❌ An error occurred while analyzing the display name. Please try again later.'
-            });
+            await message.channel.send('❌ An error occurred while analyzing the display name. Please try again later.');
         }
     }
 });
