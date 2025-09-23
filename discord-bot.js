@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits, SlashCommandBuilder, REST, Routes } = require('discord.js');
 const fs = require('fs');
+const express = require('express');
 
 // Load environment variables
 require('dotenv').config();
@@ -177,6 +178,27 @@ client.on('messageCreate', async message => {
 // Error handling
 client.on('error', console.error);
 process.on('unhandledRejection', console.error);
+
+// Create Express server for Render
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+    res.send('🤖 Spectra Discord Bot is alive! Use "spectra;help" in Discord to see commands.');
+});
+
+app.get('/health', (req, res) => {
+    res.json({ 
+        status: 'ok', 
+        bot: client.isReady ? 'online' : 'offline',
+        uptime: process.uptime()
+    });
+});
+
+// Start HTTP server
+app.listen(port, () => {
+    console.log(`🌐 HTTP server running on port ${port}`);
+});
 
 // Start the bot
 client.login(BOT_TOKEN);
