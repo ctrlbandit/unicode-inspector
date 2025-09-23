@@ -1,0 +1,19 @@
+{
+  "name": "unicode-inspector-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for scanning display names for culturally protected Unicode symbols",
+  "main": "discord-bot.js",
+  "scripts": {
+    "start": "node discord-bot.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["discord", "bot", "unicode", "cultural-appropriation", "symbols"],
+  "author": "ctrlbandit (Shadorux)",
+  "license": "MIT"
+}
