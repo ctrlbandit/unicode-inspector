@@ -24,36 +24,4 @@ This project is licensed under the MIT License.
 
 ---
 
-# 🤝 How to Contribute
-
-**I need your help!** 
-
-Many Unicode symbols, especially from indigenous, ancient, and culturally sensitive scripts, have not yet been fully classified.  
-If you know of any scripts, symbols, or blocks that should be considered closed, please contribute!
-
-### Ways to Help
-
-- ➕ Add more symbols to the `SYMBOLS_BLOCKLIST`
-- 📝 Suggest updates to `SCRIPT_STATUS`
-- 🚨 Report or create a PR for any mistakes about classification
-
-### How to Contribute
-
-1. **Fork** this repository.
-
-2. **Create a new branch:**
-
-```bash
-git checkout -b feature/add-new-closed-symbols
-```
-
-3. **Edit** the symbol lists.
-
-4. **Commit** your changes with a commit message.
-
-5. **Open a Pull Request** with a explanation of your additions.
-
----
-
-Every contribution matters! 🌍 Thanks for helping make Unicode analysis more culturally respectful!
 
