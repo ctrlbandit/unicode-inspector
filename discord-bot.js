@@ -62,6 +62,43 @@ client.once('ready', async () => {
     }
 });
 
+// Handle messages
+client.on('messageCreate', async message => {
+    if (message.author.bot) return;
+    
+    // Handle spectra;help command
+    if (message.content.toLowerCase() === 'spectra;help') {
+        const embed = {
+            color: 0x7289da,
+            title: '🤖 Spectra Help',
+            description: 'Here are the available commands:',
+            fields: [
+                {
+                    name: '📋 Commands',
+                    value: '`spectra;help` - Show this help message\n`/displayname @user` - Scan a user\'s display name for culturally protected Unicode symbols',
+                    inline: false
+                },
+                {
+                    name: '🔍 How to use /displayname',
+                    value: '1. Type `/displayname` in any channel\n2. Select a user from the dropdown\n3. The bot will analyze their display name and show results',
+                    inline: false
+                },
+                {
+                    name: '🌐 Website',
+                    value: '[Unicode Inspector](https://unicode-inspector.vercel.app) - Use the website version for detailed analysis',
+                    inline: false
+                }
+            ],
+            footer: {
+                text: 'Built by ctrlbandit (Shadorux)'
+            },
+            timestamp: new Date().toISOString()
+        };
+        
+        await message.reply({ embeds: [embed] });
+    }
+});
+
 // Handle slash commands
 client.on('interactionCreate', async interaction => {
     if (!interaction.isChatInputCommand()) return;
