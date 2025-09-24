@@ -1,0 +1,5 @@
+# Redirects for GitHub Pages
+# This file helps with redirecting old URLs if needed
+
+# Main redirect to Vercel (optional - you can remove this if you want to keep both)
+# / https://unicode-inspector.vercel.app 301

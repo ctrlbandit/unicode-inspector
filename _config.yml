@@ -1,0 +1,30 @@
+# Jekyll configuration for GitHub Pages
+title: "Unicode Inspector"
+description: "Identify culturally protected Unicode symbols to avoid appropriation"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Exclude files from processing
+exclude:
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - discord-bot.js
+  - unicode-analyzer.js
+  - unicode-inspector.js
+  - Procfile
+  - .github/
+  - README.md
+  - LICENSE
+
+# Include files that should be processed
+include:
+  - _redirects
+
+# Collections
+collections:
+  pages:
+    output: true
