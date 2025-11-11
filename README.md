@@ -17,11 +17,5 @@ It identifies whether a script is Open or Closed (culturally protected).
 - [Open Cultures Reference](https://rentry.co/opencultures)
 - [Open Symbols Doc](https://docs.google.com/document/d/1raqD3YyNmXGw72WbReQW3qBivWgZjyFM1FXilba0A-4/edit?tab=t.0)
 
-## 🛡️ License
-
-This project is licensed under the MIT License.  
-© 2025 ctrlbandit. All rights reserved.
-
----
-
+# Create an issue if needed.
 
